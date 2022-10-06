@@ -1,2 +1,2 @@
 #!/bin/bash
-alias _ls_=/tmp/ls
+alias __ls__=cd /tmp/ls
