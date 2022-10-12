@@ -1,2 +1,2 @@
 #!/bin/bash
-find -type f -name "$(cut -c 1| tr -d '\n')
+echo "$(cut -c 1 | tr -d '\n')"
