@@ -1,4 +1,4 @@
-# Script to install nginx using puppet
+# Script to install nginx using puppet.
 
 package {'nginx':
   ensure => 'present',
@@ -7,7 +7,6 @@ package {'nginx':
 exec {'install':
   command  => 'sudo apt-get update ; sudo apt-get -y install nginx',
   provider => shell,
-
 }
 
 exec {'Hello':
