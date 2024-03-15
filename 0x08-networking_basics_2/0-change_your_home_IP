@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-#configures an ubuntu server with these requirements:
+# Configures an Ubuntu server with the below requirements:
 #localhost resolves to 127.0.0.2
-#facebook.com resolves to 8.8.8.8
+#facebook.com resolves to 8.8.8.8.
 
-cp /etc/hosts ~/hosts.new
-sed -i s/127.*$/127.0.0.2\\tlocalhost\\n8.8.8.8.8\\tfacebook.com/g ~/hosts.new
-cp -f ~/hosts.new /etc/hosts
+
+cat /etc/hosts >  new_host
+sed -i s/^127.*$/127.0.0.2\\tlocalhost\\n8.8.8.8\\tfacebook.com/g new_host
+cat new_host > /etc/hosts
