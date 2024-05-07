@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
-# Script that configures a new Ubuntu machine to respect above requirements.
+# Install nginx on your web server
+# Nginx should be listening on port 80
 
-sudo apt-get update
-sudo apt-get install -y nginx
-
-echo "Hello World!" | sudo tee /var/www/html/index.html
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.blog.ehoneahobed.com permanent;"
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
-
-sudo service nginx restart
+apt-get -y update
+apt-get -y install nginx
+cp /var/www/html/index.nginx-debian.html /var/www/html/index_bckup
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default_backup
+tee /etc/nginx/sites-available/default <<EOF
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	location /redirect_me {
+		return 301 https://www.google.com;
+	}
+}
+EOF
+service nginx restart
