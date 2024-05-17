@@ -44,13 +44,12 @@ frontend web-http
 	default_backend servers
 
 frontend web-https
-	bind *:443 ssl crt /etc/letsencrypt/live/www.wondahs.tech/fullchain_combined.pem
+	bind *:443 ssl crt /etc/letsencrypt/live/www.ikonbethel.tech/fullchain_combined.pem
 	mode http
 	default_backend servers
 
 backend servers
 	redirect scheme https if !{ ssl_fc }
 	balance roundrobin
-	server web-01 100.26.236.251:80 check
-	server web-02 54.236.47.141:80 check
-
+	server web-01 18.210.16.63:80 check
+	server web-02 54.236.48.3:80 check
