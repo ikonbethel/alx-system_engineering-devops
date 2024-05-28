@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Script that blocks all incoming traffic except from ports 443, 22 and 80
+
+# Update
+apt update
+
+# Install ufw
+apt install ufw -y
+
+# Enable ufw
+ufw --force enable
+
+# Deny all incoming
+ufw default deny incoming
+
+# Allow ports 22, 443 and 80
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
