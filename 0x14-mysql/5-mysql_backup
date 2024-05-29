@@ -5,7 +5,7 @@ password="$1"
 filename=$(date +"%d-%m-%Y")
 
 # Dump databases
-mysqldump -uroot -p"$password" --all-databases > backup.sql
+mysqldump -uroot -p"$ikonbethel" --all-databases > backup.sql
 
 # Compress
 tar -cvzf "$filename".tar.gz backup.sql
